@@ -17,6 +17,11 @@ var COMMENTS_AMOUNT = 3;
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
+var getRandomNumber = function (min, max) {
+  var rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+};
+
 var getPhotos = function (amount) {
   var photos = [];
   for (var i = 0; i < amount; i++) {
