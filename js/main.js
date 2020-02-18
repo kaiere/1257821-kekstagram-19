@@ -56,3 +56,14 @@ var renderPicture = function (picture) {
 
   return pictureElement;
 };
+
+var createPhoto = function () {
+  var photos = getPhotos(PHOTOS_AMOUNT);
+  var fragment = document.createDocumentFragment();
+  for (var i = 0; i < photos.length; i++) {
+    fragment.appendChild(renderPicture(photos[i]));
+  }
+  picturesList.appendChild(fragment);
+};
+
+createPhoto();
