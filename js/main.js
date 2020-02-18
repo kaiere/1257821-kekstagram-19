@@ -22,6 +22,18 @@ var getRandomNumber = function (min, max) {
   return Math.floor(rand);
 };
 
+var createComments = function (commentCount) {
+  var comments = [];
+  for (var i = 0; i < commentCount; i++) {
+    comments.push({
+      avatar: 'img/avatar-' + getRandomNumber(MIN_AVATAR_NUMBER, MAX_AVATAR_NUMBER) + '.svg',
+      message: COMMENTS[getRandomNumber(0, COMMENTS.length)],
+      name: NAMES[getRandomNumber(0, NAMES.length)]
+    });
+  }
+  return comments;
+};
+
 var getPhotos = function (amount) {
   var photos = [];
   for (var i = 0; i < amount; i++) {
