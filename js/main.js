@@ -11,3 +11,16 @@ var COMMENTS = ['Всё отлично!',
 
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
+var getPhotos = function (amount) {
+  var photos = [];
+  for (var i = 0; i < amount; i++) {
+    photos.push({
+      url: 'photos/' + (i + 1) + '.jpg',
+      description: 'Описание фотографии',
+      likes: 'Потом тут будет нечто',
+      comments: 'Здесь тоже'
+    });
+  }
+  return photos;
+};
