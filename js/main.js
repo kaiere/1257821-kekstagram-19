@@ -8,6 +8,11 @@ var COMMENTS = ['Всё отлично!',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+var MIN_LIKES = 15;
+var MAX_LIKES = 200;
+var MIN_AVATAR_NUMBER = 1;
+var MAX_AVATAR_NUMBER = 6;
+var COMMENTS_AMOUNT = 3;
 
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
