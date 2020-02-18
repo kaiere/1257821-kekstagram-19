@@ -40,8 +40,8 @@ var getPhotos = function (amount) {
     photos.push({
       url: 'photos/' + (i + 1) + '.jpg',
       description: 'Описание фотографии',
-      likes: 'Потом тут будет нечто',
-      comments: 'Здесь тоже'
+      likes: getRandomNumber(MIN_LIKES, MAX_LIKES),
+      comments: createComments(COMMENTS_AMOUNT)
     });
   }
   return photos;
