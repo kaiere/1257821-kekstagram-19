@@ -94,3 +94,11 @@ var createCommentTemplate = function (container) {
       '</li>'
   );
 };
+
+for (var i = 0; i < collectedPhotos[0].comments.length; i++) {
+  createCommentTemplate(commentsList);
+
+  commentsList.querySelector('.social__comment').querySelector('.social__picture').src = collectedPhotos[0].comments[i].avatar;
+  commentsList.querySelector('.social__comment').querySelector('.social__picture').alt = collectedPhotos[0].comments[i].name;
+  commentsList.querySelector('.social__text').textContent = collectedPhotos[0].comments[i].message;
+}
