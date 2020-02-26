@@ -102,3 +102,6 @@ for (var i = 0; i < collectedPhotos[0].comments.length; i++) {
   commentsList.querySelector('.social__comment').querySelector('.social__picture').alt = collectedPhotos[0].comments[i].name;
   commentsList.querySelector('.social__text').textContent = collectedPhotos[0].comments[i].message;
 }
+
+bigPicture.querySelector('.social__comment-count').classList.add('hidden');
+bigPicture.querySelector('.comments-loader').classList.add('hidden');
