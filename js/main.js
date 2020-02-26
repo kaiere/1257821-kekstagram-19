@@ -85,3 +85,12 @@ likesCount.textContent = collectedPhotos[0].likes;
 
 var commentsCount = bigPicture.querySelector('.comments-count');
 commentsCount.textContent = collectedPhotos[0].comments.length;
+
+var createCommentTemplate = function (container) {
+  container.insertAdjacentHTML('afterbegin',
+      '<li class="social__comment">' +
+        '<img class="social__picture" width="35" height="35">' +
+        '<p class="social__text"></p>' +
+      '</li>'
+  );
+};
