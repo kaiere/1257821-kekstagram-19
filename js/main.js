@@ -76,3 +76,6 @@ var commentsList = document.querySelector('.social__comments');
 
 var image = bigPicture.querySelector('.big-picture__img').querySelector('img');
 image.src = collectedPhotos[0].url;
+
+var description = bigPicture.querySelector('.social__caption');
+description.textContent = collectedPhotos[0].description;
