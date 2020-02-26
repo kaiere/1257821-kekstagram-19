@@ -47,6 +47,8 @@ var getPhotos = function (amount) {
   return photos;
 };
 
+var collectedPhotos = getPhotos(PHOTOS_AMOUNT);
+
 var renderPicture = function (picture) {
   var pictureElement = pictureTemplate.cloneNode(true);
 
@@ -57,8 +59,7 @@ var renderPicture = function (picture) {
   return pictureElement;
 };
 
-var createPhoto = function () {
-  var photos = getPhotos(PHOTOS_AMOUNT);
+var createPhoto = function (photos) {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < photos.length; i++) {
     fragment.appendChild(renderPicture(photos[i]));
@@ -66,4 +67,4 @@ var createPhoto = function () {
   picturesList.appendChild(fragment);
 };
 
-createPhoto();
+createPhoto(collectedPhotos);
