@@ -47,6 +47,8 @@ var getPhotos = function (amount) {
   return photos;
 };
 
+var collectedPhotos = getPhotos(PHOTOS_AMOUNT);
+
 var renderPicture = function (picture) {
   var pictureElement = pictureTemplate.cloneNode(true);
 
@@ -57,8 +59,7 @@ var renderPicture = function (picture) {
   return pictureElement;
 };
 
-var createPhoto = function () {
-  var photos = getPhotos(PHOTOS_AMOUNT);
+var createPhoto = function (photos) {
   var fragment = document.createDocumentFragment();
   for (var i = 0; i < photos.length; i++) {
     fragment.appendChild(renderPicture(photos[i]));
@@ -66,4 +67,43 @@ var createPhoto = function () {
   picturesList.appendChild(fragment);
 };
 
-createPhoto();
+createPhoto(collectedPhotos);
+
+var bigPicture = document.querySelector('.big-picture');
+bigPicture.classList.remove('hidden');
+
+var commentsList = document.querySelector('.social__comments');
+
+var image = bigPicture.querySelector('.big-picture__img').querySelector('img');
+image.src = collectedPhotos[0].url;
+
+var description = bigPicture.querySelector('.social__caption');
+description.textContent = collectedPhotos[0].description;
+
+var likesCount = bigPicture.querySelector('.likes-count');
+likesCount.textContent = collectedPhotos[0].likes;
+
+var commentsCount = bigPicture.querySelector('.comments-count');
+commentsCount.textContent = collectedPhotos[0].comments.length;
+
+var createCommentTemplate = function (container) {
+  container.insertAdjacentHTML('afterbegin',
+      '<li class="social__comment">' +
+        '<img class="social__picture" width="35" height="35">' +
+        '<p class="social__text"></p>' +
+      '</li>'
+  );
+};
+
+for (var i = 0; i < collectedPhotos[0].comments.length; i++) {
+  createCommentTemplate(commentsList);
+
+  commentsList.querySelector('.social__comment').querySelector('.social__picture').src = collectedPhotos[0].comments[i].avatar;
+  commentsList.querySelector('.social__comment').querySelector('.social__picture').alt = collectedPhotos[0].comments[i].name;
+  commentsList.querySelector('.social__text').textContent = collectedPhotos[0].comments[i].message;
+}
+
+bigPicture.querySelector('.social__comment-count').classList.add('hidden');
+bigPicture.querySelector('.comments-loader').classList.add('hidden');
+
+document.querySelector('body').classList.add('modal-open');
