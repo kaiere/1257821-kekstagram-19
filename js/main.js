@@ -79,3 +79,9 @@ image.src = collectedPhotos[0].url;
 
 var description = bigPicture.querySelector('.social__caption');
 description.textContent = collectedPhotos[0].description;
+
+var likesCount = bigPicture.querySelector('.likes-count');
+likesCount.textContent = collectedPhotos[0].likes;
+
+var commentsCount = bigPicture.querySelector('.comments-count');
+commentsCount.textContent = collectedPhotos[0].comments.length;
