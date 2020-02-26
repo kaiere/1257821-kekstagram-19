@@ -73,3 +73,6 @@ var bigPicture = document.querySelector('.big-picture');
 bigPicture.classList.remove('hidden');
 
 var commentsList = document.querySelector('.social__comments');
+
+var image = bigPicture.querySelector('.big-picture__img').querySelector('img');
+image.src = collectedPhotos[0].url;
