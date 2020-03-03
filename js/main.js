@@ -311,3 +311,11 @@ var checkAllHashtags = function (str) {
   }
   return true;
 };
+
+photoUploadSubmitButton.addEventListener('click', function () {
+  if (!checkAllHashtags(hashtagInput.value)) {
+    hashtagInput.setCustomValidity('Неправильный формат хэштега');
+  } else {
+    hashtagInput.setCustomValidity('');
+  }
+});
