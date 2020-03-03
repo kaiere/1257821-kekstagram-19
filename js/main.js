@@ -164,3 +164,17 @@ var smallScale = function () {
     photoUploadDiv.style.transform = 'scale(0.' + STEP_VALUES[stepValue] + ')';
   }
 };
+
+var bigScale = function () {
+  if (scaleControlInput.value === '100%') {
+    scaleControlInput.value = '100%';
+  } else {
+    stepValue++;
+    scaleControlInput.value = STEP_VALUES[stepValue] + '%';
+    if (STEP_VALUES[stepValue] === '100') {
+      photoUploadDiv.style.transform = 'scale(1.0)';
+    } else {
+      photoUploadDiv.style.transform = 'scale(0.' + STEP_VALUES[stepValue] + ')';
+    }
+  }
+};
