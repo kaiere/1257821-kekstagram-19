@@ -278,3 +278,13 @@ var checkHashtag = function (tag) {
 
   return false;
 };
+
+var fixTags = function (array) {
+  var tagsArray = [];
+  for (var j = 0; j < array.length; j++) {
+    if (array[j] !== '') {
+      tagsArray.push(array[j]);
+    }
+  }
+  return tagsArray;
+};
