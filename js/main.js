@@ -240,3 +240,25 @@ effectsList.addEventListener('click', function (evt) {
 effectsNoneBtn.addEventListener('click', function () {
   photoUpload.style = '';
 });
+
+levelLine.addEventListener('mouseup', function (evt) {
+  var saturation = evt.offsetX / levelLine.offsetWidth * 100;
+  var saturationBlur = evt.offsetX / levelLine.offsetWidth * 3;
+  var saturationBrightness = (evt.offsetX / levelLine.offsetWidth * 2) + 1;
+
+  if (photoUpload.className === object['effect-chrome']) {
+    photoUpload.style.filter = 'grayscale(0.' + Math.floor(saturation) + ')';
+  }
+  if (photoUpload.className === object['effect-sepia']) {
+    photoUpload.style.filter = 'sepia(0.' + Math.floor(saturation) + ')';
+  }
+  if (photoUpload.className === object['effect-marvin']) {
+    photoUpload.style.filter = 'invert(' + Math.round(saturation) + '%)';
+  }
+  if (photoUpload.className === object['effect-phobos']) {
+    photoUpload.style.filter = 'blur(' + saturationBlur + 'px)';
+  }
+  if (photoUpload.className === object['effect-heat']) {
+    photoUpload.style.filter = 'brightness(' + saturationBrightness + ')';
+  }
+});
