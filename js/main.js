@@ -185,3 +185,9 @@ smallScaleButton.addEventListener('click', function () {
 bigScaleButton.addEventListener('click', function () {
   bigScale();
 });
+
+var effectsList = document.querySelector('.effects__list');
+var photoUpload = document.querySelector('.img-upload__preview').querySelector('img');
+var levelLine = document.querySelector('.effect-level__line');
+var effectsNoneBtn = document.querySelector('.effects__preview--none');
+var effectLevelSlider = document.querySelector('.effect-level');
