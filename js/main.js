@@ -113,3 +113,14 @@ bigPicture.querySelector('.comments-loader').classList.add('hidden');
 var photoUploadInput = document.querySelector('.img-upload .img-upload__input');
 var photoUploadCancel = document.querySelector('.img-upload .img-upload__cancel');
 var photoUploadOverlay = document.querySelector('.img-upload .img-upload__overlay');
+
+var openUploadWindow = function () {
+  photoUploadOverlay.classList.remove('hidden');
+  document.querySelector('body').classList.add('modal-open');
+};
+
+var closeUploadWindow = function () {
+  photoUploadOverlay.classList.add('hidden');
+  document.querySelector('body').classList.remove('modal-open');
+  photoUploadInput = '';
+};
