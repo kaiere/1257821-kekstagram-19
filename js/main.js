@@ -15,6 +15,7 @@ var MAX_AVATAR_NUMBER = 6;
 var COMMENTS_AMOUNT = 3;
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
+var STEP_VALUES = ['25', '50', '75', '100'];
 
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
