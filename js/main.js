@@ -288,3 +288,26 @@ var fixTags = function (array) {
   }
   return tagsArray;
 };
+
+var checkAllHashtags = function (str) {
+  var tags = str.split(' ');
+  var tagsNoSpaces = fixTags(tags);
+
+  if (tagsNoSpaces.length > 5) {
+    return false;
+  }
+  for (var index = 0; index < tagsNoSpaces.length; index++) {
+    for (var k = index + 1; k < tagsNoSpaces.length; k++) {
+      if (tagsNoSpaces[index].toLowerCase() === tagsNoSpaces[k].toLowerCase()) {
+        return false;
+      }
+    }
+  }
+
+  for (var l = 0; l < tagsNoSpaces.length; l++) {
+    if (!checkHashtag(tagsNoSpaces[l])) {
+      return false;
+    }
+  }
+  return true;
+};
