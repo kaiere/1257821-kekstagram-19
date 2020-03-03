@@ -200,3 +200,5 @@ var object = {
   'effect-phobos': 'effects-preview--phobos',
   'effect-heat': 'effects-preview--heat'
 };
+
+effectLevelSlider.classList.add('hidden');
