@@ -13,6 +13,8 @@ var MAX_LIKES = 200;
 var MIN_AVATAR_NUMBER = 1;
 var MAX_AVATAR_NUMBER = 6;
 var COMMENTS_AMOUNT = 3;
+var ESC_KEY = 'Escape';
+var ENTER_KEY = 'Enter';
 
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
