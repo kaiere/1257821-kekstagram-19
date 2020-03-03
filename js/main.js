@@ -124,3 +124,7 @@ var closeUploadWindow = function () {
   document.querySelector('body').classList.remove('modal-open');
   photoUploadInput = '';
 };
+
+photoUploadInput.addEventListener('change', function () {
+  openUploadWindow();
+});
