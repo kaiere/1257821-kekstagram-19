@@ -138,3 +138,11 @@ photoUploadCancel.addEventListener('keydown', function (evt) {
     closeUploadWindow();
   }
 });
+
+var onUploadPressEscape = function (evt) {
+  if (evt.key === ESC_KEY) {
+    closeUploadWindow();
+  }
+};
+
+document.addEventListener('keydown', onUploadPressEscape);
