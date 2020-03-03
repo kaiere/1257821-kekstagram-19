@@ -266,3 +266,15 @@ levelLine.addEventListener('mouseup', function (evt) {
 var photoUploadSubmitButton = document.querySelector('.img-upload__submit');
 var hashtagInput = document.querySelector('.text__hashtags');
 var regex = /^#[a-zA-Z0-9]+$/;
+
+var checkHashtag = function (tag) {
+  if (tag.length > 20) {
+    return false;
+  }
+
+  if (regex.test(tag)) {
+    return true;
+  }
+
+  return false;
+};
