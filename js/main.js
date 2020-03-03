@@ -72,7 +72,7 @@ var createPhoto = function (photos) {
 createPhoto(collectedPhotos);
 
 var bigPicture = document.querySelector('.big-picture');
-bigPicture.classList.remove('hidden');
+// bigPicture.classList.remove('hidden');
 
 var commentsList = document.querySelector('.social__comments');
 
