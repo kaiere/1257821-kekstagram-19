@@ -106,4 +106,4 @@ for (var i = 0; i < collectedPhotos[0].comments.length; i++) {
 bigPicture.querySelector('.social__comment-count').classList.add('hidden');
 bigPicture.querySelector('.comments-loader').classList.add('hidden');
 
-document.querySelector('body').classList.add('modal-open');
+// document.querySelector('body').classList.add('modal-open');
