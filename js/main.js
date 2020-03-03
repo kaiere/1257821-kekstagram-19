@@ -262,3 +262,7 @@ levelLine.addEventListener('mouseup', function (evt) {
     photoUpload.style.filter = 'brightness(' + saturationBrightness + ')';
   }
 });
+
+var photoUploadSubmitButton = document.querySelector('.img-upload__submit');
+var hashtagInput = document.querySelector('.text__hashtags');
+var regex = /^#[a-zA-Z0-9]+$/;
