@@ -191,3 +191,12 @@ var photoUpload = document.querySelector('.img-upload__preview').querySelector('
 var levelLine = document.querySelector('.effect-level__line');
 var effectsNoneBtn = document.querySelector('.effects__preview--none');
 var effectLevelSlider = document.querySelector('.effect-level');
+
+var object = {
+  'effect-none': 'effects-preview--none',
+  'effect-chrome': 'effects-preview--chrome',
+  'effect-sepia': 'effects-preview--sepia',
+  'effect-marvin': 'effects-preview--marvin',
+  'effect-phobos': 'effects-preview--phobos',
+  'effect-heat': 'effects-preview--heat'
+};
