@@ -178,3 +178,10 @@ var bigScale = function () {
     }
   }
 };
+
+smallScaleButton.addEventListener('click', function () {
+  smallScale();
+});
+bigScaleButton.addEventListener('click', function () {
+  bigScale();
+});
