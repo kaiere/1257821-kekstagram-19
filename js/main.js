@@ -109,3 +109,7 @@ bigPicture.querySelector('.social__comment-count').classList.add('hidden');
 bigPicture.querySelector('.comments-loader').classList.add('hidden');
 
 // document.querySelector('body').classList.add('modal-open');
+
+var photoUploadInput = document.querySelector('.img-upload .img-upload__input');
+var photoUploadCancel = document.querySelector('.img-upload .img-upload__cancel');
+var photoUploadOverlay = document.querySelector('.img-upload .img-upload__overlay');
