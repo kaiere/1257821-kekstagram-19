@@ -128,3 +128,13 @@ var closeUploadWindow = function () {
 photoUploadInput.addEventListener('change', function () {
   openUploadWindow();
 });
+
+photoUploadCancel.addEventListener('click', function () {
+  closeUploadWindow();
+});
+
+photoUploadCancel.addEventListener('keydown', function (evt) {
+  if (evt.key === ENTER_KEY) {
+    closeUploadWindow();
+  }
+});
