@@ -147,3 +147,10 @@ var onUploadPressEscape = function (evt) {
 };
 
 document.addEventListener('keydown', onUploadPressEscape);
+
+var smallScaleButton = document.querySelector('.scale__control--smaller');
+var bigScaleButton = document.querySelector('.scale__control--bigger');
+var scaleControlInput = document.querySelector('.scale__control--value');
+var photoUploadDiv = document.querySelector('.img-upload__preview');
+var stepValue = 3;
+scaleControlInput.value = '100%';
