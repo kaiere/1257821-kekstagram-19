@@ -327,3 +327,15 @@ var bigPicture = document.querySelector('.big-picture');
 var pictureUnit = document.querySelectorAll('.picture');
 var bigPictureComment = bigPicture.querySelector('.social__footer-text');
 var closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
+
+var closeBigPicture = function () {
+  bigPicture.classList.add('hidden');
+  document.removeEventListener('keydown', onBigPictureEscPress);
+  document.querySelector('body').classList.remove('modal-open'); // При закрытии окна скролл возвращается - важно!
+};
+
+var onBigPictureEscPress = function (evt) {
+  if (evt.key === ESC_KEY && bigPictureComment !== document.activeElement) {
+    closeBigPicture();
+  }
+};
