@@ -72,10 +72,10 @@ var createPhoto = function (photos) {
 
 createPhoto(collectedPhotos);
 
-var bigPicture = document.querySelector('.big-picture');
+// var bigPicture = document.querySelector('.big-picture');
 // bigPicture.classList.remove('hidden');
 
-var commentsList = document.querySelector('.social__comments');
+/* var commentsList = document.querySelector('.social__comments');
 
 var image = bigPicture.querySelector('.big-picture__img').querySelector('img');
 image.src = collectedPhotos[0].url;
@@ -107,7 +107,7 @@ for (var i = 0; i < collectedPhotos[0].comments.length; i++) {
 }
 
 bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-bigPicture.querySelector('.comments-loader').classList.add('hidden');
+bigPicture.querySelector('.comments-loader').classList.add('hidden'); */
 
 // document.querySelector('body').classList.add('modal-open');
 
