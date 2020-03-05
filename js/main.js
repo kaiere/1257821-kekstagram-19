@@ -339,3 +339,5 @@ var onBigPictureEscPress = function (evt) {
     closeBigPicture();
   }
 };
+
+closeBigPictureButton.addEventListener('click', closeBigPicture);
