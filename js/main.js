@@ -363,3 +363,7 @@ var openBigPicture = function (item, picture) {
     document.addEventListener('keydown', onBigPictureEscPress);
   });
 };
+
+for (var n = 0; n < pictureUnit.length; n++) {
+  openBigPicture(pictureUnit[n], collectedPhotos[n]); // Подставляем в функцию наш массив с отрисованными фотографиями
+}
