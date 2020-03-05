@@ -320,3 +320,10 @@ photoUploadSubmitButton.addEventListener('click', function () {
     hashtagInput.setCustomValidity('');
   }
 });
+
+// Модуль 4 Задание 3
+
+var bigPicture = document.querySelector('.big-picture');
+var pictureUnit = document.querySelectorAll('.picture');
+var bigPictureComment = bigPicture.querySelector('.social__footer-text');
+var closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
