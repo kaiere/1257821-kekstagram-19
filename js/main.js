@@ -7,12 +7,32 @@ var COMMENTS = ['Всё отлично!',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'];
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+  'Пожалуйста, никогда больше не снимай - треш какой-то...',
+  'Надеюсь, никто из участников фото не пострадал',
+  'Хороший ракурс!',
+  'Ну это просто неприлично... Прикройся!',
+  'Фигура класс! У меня такая же! Была. Лет 20 назад',
+  'Вид огонь! Но на даче у дяди Васи все равно лучше',
+  'Я понимаю, что ты в отпуске, но клиент тут поправки прислал - оторвись от фоток!',
+  'Ещё немного - и можно в профессиональные фотографы! :3',
+  'Тебе очень идёт, конечно, но больше так не одевайся...',
+  'На фотке не хватает кота!',
+  'Красиво! Хочу туда!',
+  'Супер-камера, это новый яблофон?',
+  'И сколько денег на это выкинуто???',
+  'Жить надо проще, срамота!',
+  'Никого не слушай, всё огонь :)',
+  'Собрались диванные ценители искусства...',
+  'Хокусай бы одобрил',
+  'Клёво как, а это где? На Камчатке?',
+  'Ой как круто, привезёшь мне сувенир какой-нибудь?)))',
+  'Люди на фотке такие счастливые! Будто и не в России живут...'];
 var MIN_LIKES = 15;
 var MAX_LIKES = 200;
 var MIN_AVATAR_NUMBER = 1;
 var MAX_AVATAR_NUMBER = 6;
-var COMMENTS_AMOUNT = 3;
+var COMMENTS_AMOUNT = 2;
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
 var STEP_VALUES = ['25', '50', '75', '100'];
@@ -58,6 +78,7 @@ var renderPicture = function (picture) {
   pictureElement.querySelector('.picture__img').src = picture.url;
   pictureElement.querySelector('.picture__likes').textContent = picture.likes;
   pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
+  pictureElement.querySelector('.picture__img').alt = picture.description;
 
   return pictureElement;
 };
@@ -72,10 +93,10 @@ var createPhoto = function (photos) {
 
 createPhoto(collectedPhotos);
 
-var bigPicture = document.querySelector('.big-picture');
+// var bigPicture = document.querySelector('.big-picture');
 // bigPicture.classList.remove('hidden');
 
-var commentsList = document.querySelector('.social__comments');
+/* var commentsList = document.querySelector('.social__comments');
 
 var image = bigPicture.querySelector('.big-picture__img').querySelector('img');
 image.src = collectedPhotos[0].url;
@@ -107,7 +128,7 @@ for (var i = 0; i < collectedPhotos[0].comments.length; i++) {
 }
 
 bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-bigPicture.querySelector('.comments-loader').classList.add('hidden');
+bigPicture.querySelector('.comments-loader').classList.add('hidden'); */
 
 // document.querySelector('body').classList.add('modal-open');
 
@@ -319,3 +340,50 @@ photoUploadSubmitButton.addEventListener('click', function () {
     hashtagInput.setCustomValidity('');
   }
 });
+
+// Модуль 4 Задание 3
+
+var bigPicture = document.querySelector('.big-picture');
+var pictureUnit = document.querySelectorAll('.picture');
+var bigPictureComment = bigPicture.querySelector('.social__footer-text');
+var closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
+
+var closeBigPicture = function () {
+  bigPicture.classList.add('hidden');
+  document.removeEventListener('keydown', onBigPictureEscPress);
+  document.querySelector('body').classList.remove('modal-open'); // При закрытии окна скролл возвращается - важно!
+};
+
+var onBigPictureEscPress = function (evt) {
+  if (evt.key === ESC_KEY && bigPictureComment !== document.activeElement) {
+    closeBigPicture();
+  }
+};
+
+closeBigPictureButton.addEventListener('click', closeBigPicture);
+
+var openBigPicture = function (item, picture) {
+
+  item.addEventListener('click', function (evt) {
+    evt.preventDefault();
+    document.querySelector('body').classList.add('modal-open');
+    bigPicture.classList.remove('hidden');
+    bigPicture.querySelector('.big-picture__img img').src = picture.url;
+    bigPicture.querySelector('.likes-count').textContent = picture.likes;
+    bigPicture.querySelector('.social__caption').textContent = picture.description;
+    bigPicture.querySelector('.social__comments-loader').classList.add('hidden');
+    bigPicture.querySelector('.social__comment-count').classList.add('hidden');
+
+    var socialText = bigPicture.querySelectorAll('.social__text');
+    bigPicture.querySelector('.comments-count').textContent = socialText.length;
+    for (var m = 0; m < socialText.length; m++) {
+      socialText[m].textContent = picture.comments[m].message;
+    }
+
+    document.addEventListener('keydown', onBigPictureEscPress);
+  });
+};
+
+for (var n = 0; n < pictureUnit.length; n++) {
+  openBigPicture(pictureUnit[n], collectedPhotos[n]); // Подставляем в функцию наш массив с отрисованными фотографиями
+}
