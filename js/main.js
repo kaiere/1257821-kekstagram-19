@@ -1,6 +1,6 @@
 'use strict';
 
-var PHOTOS_AMOUNT = 25;
+/* var PHOTOS_AMOUNT = 25;
 var NAMES = ['Прометей', 'Такэда Сингэн', 'Чаплин', 'Аноним', 'Собака сутулая', 'Токугава Иэясу', 'Маки'];
 var COMMENTS = ['Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -35,15 +35,15 @@ var MAX_AVATAR_NUMBER = 6;
 var COMMENTS_AMOUNT = 2;
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
-var STEP_VALUES = ['25', '50', '75', '100'];
+var STEP_VALUES = ['25', '50', '75', '100']; */
 
 var picturesList = document.querySelector('.pictures');
 var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-var getRandomNumber = function (min, max) {
+/* var getRandomNumber = function (min, max) {
   var rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
-};
+}; */
 
 var createComments = function (commentCount) {
   var comments = [];
