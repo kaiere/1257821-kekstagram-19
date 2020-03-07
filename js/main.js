@@ -36,22 +36,21 @@ var COMMENTS_AMOUNT = 2;
 var ESC_KEY = 'Escape';
 var ENTER_KEY = 'Enter';
 var STEP_VALUES = ['25', '50', '75', '100']; */
-
-var picturesList = document.querySelector('.pictures');
-var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-
 /* var getRandomNumber = function (min, max) {
   var rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }; */
 
+var picturesList = document.querySelector('.pictures');
+var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+
 var createComments = function (commentCount) {
   var comments = [];
   for (var i = 0; i < commentCount; i++) {
     comments.push({
-      avatar: 'img/avatar-' + getRandomNumber(MIN_AVATAR_NUMBER, MAX_AVATAR_NUMBER) + '.svg',
-      message: COMMENTS[getRandomNumber(0, COMMENTS.length)],
-      name: NAMES[getRandomNumber(0, NAMES.length)]
+      avatar: 'img/avatar-' + window.utils.getRandomNumber(window.utils.MIN_AVATAR_NUMBER, window.utils.MAX_AVATAR_NUMBER) + '.svg',
+      message: window.utils.COMMENTS[window.utils.getRandomNumber(0, window.utils.COMMENTS.length)],
+      name: window.utils.NAMES[window.utils.getRandomNumber(0, window.utils.NAMES.length)]
     });
   }
   return comments;
@@ -63,14 +62,14 @@ var getPhotos = function (amount) {
     photos.push({
       url: 'photos/' + (i + 1) + '.jpg',
       description: 'Описание фотографии',
-      likes: getRandomNumber(MIN_LIKES, MAX_LIKES),
-      comments: createComments(COMMENTS_AMOUNT)
+      likes: window.utils.getRandomNumber(window.utils.MIN_LIKES, window.utils.MAX_LIKES),
+      comments: createComments(window.utils.COMMENTS_AMOUNT)
     });
   }
   return photos;
 };
 
-var collectedPhotos = getPhotos(PHOTOS_AMOUNT);
+var collectedPhotos = getPhotos(window.utils.PHOTOS_AMOUNT);
 
 var renderPicture = function (picture) {
   var pictureElement = pictureTemplate.cloneNode(true);
@@ -156,13 +155,13 @@ photoUploadCancel.addEventListener('click', function () {
 });
 
 photoUploadCancel.addEventListener('keydown', function (evt) {
-  if (evt.key === ENTER_KEY) {
+  if (evt.key === window.utils.ENTER_KEY) {
     closeUploadWindow();
   }
 });
 
 var onUploadPressEscape = function (evt) {
-  if (evt.key === ESC_KEY) {
+  if (evt.key === window.utils.ESC_KEY) {
     closeUploadWindow();
   }
 };
@@ -181,8 +180,8 @@ var smallScale = function () {
     scaleControlInput.value = '25%';
   } else {
     stepValue--;
-    scaleControlInput.value = STEP_VALUES[stepValue] + '%';
-    photoUploadDiv.style.transform = 'scale(0.' + STEP_VALUES[stepValue] + ')';
+    scaleControlInput.value = window.utils.STEP_VALUES[stepValue] + '%';
+    photoUploadDiv.style.transform = 'scale(0.' + window.utils.STEP_VALUES[stepValue] + ')';
   }
 };
 
@@ -192,10 +191,10 @@ var bigScale = function () {
   } else {
     stepValue++;
     scaleControlInput.value = STEP_VALUES[stepValue] + '%';
-    if (STEP_VALUES[stepValue] === '100') {
+    if (window.utils.STEP_VALUES[stepValue] === '100') {
       photoUploadDiv.style.transform = 'scale(1.0)';
     } else {
-      photoUploadDiv.style.transform = 'scale(0.' + STEP_VALUES[stepValue] + ')';
+      photoUploadDiv.style.transform = 'scale(0.' + window.utils.STEP_VALUES[stepValue] + ')';
     }
   }
 };
@@ -355,7 +354,7 @@ var closeBigPicture = function () {
 };
 
 var onBigPictureEscPress = function (evt) {
-  if (evt.key === ESC_KEY && bigPictureComment !== document.activeElement) {
+  if (evt.key === window.utils.ESC_KEY && bigPictureComment !== document.activeElement) {
     closeBigPicture();
   }
 };
