@@ -1,6 +1,9 @@
 'use strict';
 
-var photoUploadSubmitButton = document.querySelector('.img-upload__submit');
+// ВАЛИДАЦИЯ ХЭШТЕГОВ
+
+(function () {
+  var photoUploadSubmitButton = document.querySelector('.img-upload__submit');
 var hashtagInput = document.querySelector('.text__hashtags');
 var regex = /^#[a-zA-Z0-9]+$/;
 
@@ -14,7 +17,7 @@ var checkHashtag = function (tag) {
   }
 
   return false;
-};
+}; // Проверка формата хэштега
 
 var fixTags = function (array) {
   var tagsArray = [];
@@ -24,7 +27,7 @@ var fixTags = function (array) {
     }
   }
   return tagsArray;
-};
+}; // Добавление пробелов
 
 var checkAllHashtags = function (str) {
   var tags = str.split(' ');
@@ -56,3 +59,4 @@ photoUploadSubmitButton.addEventListener('click', function () {
     hashtagInput.setCustomValidity('');
   }
 });
+})();
