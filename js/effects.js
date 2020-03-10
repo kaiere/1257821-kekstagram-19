@@ -28,4 +28,17 @@
     effectDepth.style.width = window.utils.MAX_EFFECT_LEVEL + '%';
     effectLevelInput.value = window.utils.MAX_EFFECT_LEVEL;
   };
+
+  var changeFilter = function (evt) {
+    var target = evt.target.matches('input[name="effect"]');
+    if (!target) {
+      return;
+    }
+    var effectName = evt.target.id;
+    photoUpload.className = 'img-upload__preview';
+    photoUpload.classList.add(effectListMap[effectName]);
+    photoUpload.style.filter = '';
+    setDefaultEffectLevel();
+    showSlider(effectName);
+  };
 })();
