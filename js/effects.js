@@ -22,4 +22,10 @@
   var showSlider = function (effect) {
     return (effect === 'effect-none') ? effectLevelSlider.classList.add('hidden') : effectLevelSlider.classList.remove('hidden');
   };
+
+  var setDefaultEffectLevel = function () {
+    pin.style.left = window.utils.MAX_EFFECT_LEVEL + '%';
+    effectDepth.style.width = window.utils.MAX_EFFECT_LEVEL + '%';
+    effectLevelInput.value = window.utils.MAX_EFFECT_LEVEL;
+  };
 })();
