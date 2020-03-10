@@ -50,5 +50,14 @@
     effectsList.removeEventListener('click', onEffectButtonClick);
   };
 
+  var onUploadCancelClick = function () {
+    closeUploadWindow();
+  };
+
+  var onUploadPressEscape = function (evt) {
+    if ((evt.key === window.utils.ESCAPE_KEY) && (evt.target !== hashtagsInput) && (evt.target !== descriptionInput)) {
+      closeUploadWindow();
+    }
+  };
 
 })();
