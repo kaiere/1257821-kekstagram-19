@@ -41,4 +41,25 @@
     setDefaultEffectLevel();
     showSlider(effectName);
   };
+
+  var chrome = {
+    min: 0,
+    max: 1
+  };
+  var sepia = {
+    min: 0,
+    max: 1
+  };
+  var marvin = {
+    min: 0,
+    max: 100
+  };
+  var phobos = {
+    min: 0,
+    max: 3
+  };
+  var heat = {
+    min: 1,
+    max: 3
+  };
 })();
