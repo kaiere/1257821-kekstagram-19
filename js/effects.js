@@ -3,6 +3,7 @@
 // Работа с эффектами - фильтры
 
 (function () {
+
   var editPhoto = document.querySelector('.img-upload__overlay');
   var photoUpload = editPhoto.querySelector('.img-upload__preview');
   var effectLevelInput = editPhoto.querySelector('.effect-level__value');
@@ -11,12 +12,12 @@
   var pin = levelLine.querySelector('.effect-level__pin');
   var effectDepth = levelLine.querySelector('.effect-level__depth');
   var effectListMap = {
-    'effect-none': 'effects-preview--none',
-    'effect-chrome': 'effects-preview--chrome',
-    'effect-sepia': 'effects-preview--sepia',
-    'effect-marvin': 'effects-preview--marvin',
-    'effect-phobos': 'effects-preview--phobos',
-    'effect-heat': 'effects-preview--heat'
+    'effect-none': 'effects__preview--none',
+    'effect-chrome': 'effects__preview--chrome',
+    'effect-sepia': 'effects__preview--sepia',
+    'effect-marvin': 'effects__preview--marvin',
+    'effect-phobos': 'effects__preview--phobos',
+    'effect-heat': 'effects__preview--heat'
   };
 
   var showSlider = function (effect) {
