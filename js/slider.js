@@ -46,4 +46,9 @@
     document.addEventListener('mousemove', onPinMouseMove);
     document.addEventListener('mouseup', onPinMouseUp);
   };
+
+  window.slider = {
+    movePin: onPinMouseDown
+  };
+
 })();
