@@ -14,4 +14,41 @@
   var line = uploadForm.querySelector('.effect-level__line');
   var pin = line.querySelector('.effect-level__pin');
   var imagePreview = photoUploadOverlay.querySelector('.img-upload__preview');
+
+  uploadFileInput.addEventListener('change', function () {
+    openUploadWindow();
+  });
+
+  var onPinMouseDown = function (evt) {
+    window.slider.movePin(evt);
+  };
+
+  var onEffectButtonClick = function (evt) {
+    window.filter.changeFilter(evt);
+  };
+
+  var openUploadWindow = function () {
+    photoUploadOverlay.classList.remove('hidden');
+    body.classList.add('modal-open');
+    window.filter.setDefaultEffectLevel();
+    window.filter.showSlider('effect-none');
+    imagePreview.className = 'img-upload__preview';
+
+    photoUploadCancel.addEventListener('click', onUploadCancelClick);
+    document.addEventListener('keydown', onUploadPressEscape);
+    pin.addEventListener('mousedown', onPinMouseDown);
+    effectsList.addEventListener('click', onEffectButtonClick);
+  };
+
+  var closeUploadWindow = function () {
+    photoUploadOverlay.classList.add('hidden');
+    body.classList.remove('modal-open');
+
+    photoUploadCancel.removeEventListener('click', onUploadCancelClick);
+    document.removeEventListener('keydown', onUploadPressEscape);
+    pin.removeEventListener('mousedown', onPinMouseDown);
+    effectsList.removeEventListener('click', onEffectButtonClick);
+  };
+
+
 })();
