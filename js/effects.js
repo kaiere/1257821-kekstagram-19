@@ -62,4 +62,8 @@
     min: 1,
     max: 3
   };
+
+  var getEffectDepth = function (limit) {
+    return ((effectLevelInput.value * (limit.max - limit.min)) / window.utils.MAX_EFFECT_LEVEL) + limit.min;
+  };
 })();
