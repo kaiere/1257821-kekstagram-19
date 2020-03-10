@@ -84,4 +84,12 @@
       photoUpload.style.filter = 'brightness(' + getEffectDepth(heat) + ')';
     }
   };
+
+  window.filter = {
+    changeFilter: changeFilter,
+    setFilter: setFilter,
+    showSlider: showSlider,
+    setDefaultEffectLevel: setDefaultEffectLevel
+  };
+
 })();
