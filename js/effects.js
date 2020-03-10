@@ -66,4 +66,22 @@
   var getEffectDepth = function (limit) {
     return ((effectLevelInput.value * (limit.max - limit.min)) / window.utils.MAX_EFFECT_LEVEL) + limit.min;
   };
+
+  var setFilter = function (effect) {
+    if (effect === 'effect-chrome') {
+      photoUpload.style.filter = 'grayscale(' + getEffectDepth(chrome) + ')';
+    }
+    if (effect === 'effect-sepia') {
+      photoUpload.style.filter = 'sepia(' + getEffectDepth(sepia) + ')';
+    }
+    if (effect === 'effect-marvin') {
+      photoUpload.style.filter = 'invert(' + getEffectDepth(marvin) + '%)';
+    }
+    if (effect === 'effect-phobos') {
+      photoUpload.style.filter = 'blur(' + getEffectDepth(phobos) + 'px)';
+    }
+    if (effect === 'effect-heat') {
+      photoUpload.style.filter = 'brightness(' + getEffectDepth(heat) + ')';
+    }
+  };
 })();
