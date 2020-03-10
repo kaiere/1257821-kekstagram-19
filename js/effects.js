@@ -19,4 +19,7 @@
     'effect-heat': 'effects-preview--heat'
   };
 
+  var showSlider = function (effect) {
+    return (effect === 'effect-none') ? effectLevelSlider.classList.add('hidden') : effectLevelSlider.classList.remove('hidden');
+  };
 })();
