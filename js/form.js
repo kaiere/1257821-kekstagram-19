@@ -3,40 +3,61 @@
 // Загрузка фотки и редактирование
 
 (function () {
-  var photoUploadInput = document.querySelector('.img-upload .img-upload__input');
-  var photoUploadCancel = document.querySelector('.img-upload .img-upload__cancel');
-  var photoUploadOverlay = document.querySelector('.img-upload .img-upload__overlay');
+  var body = document.querySelector('body');
+  var uploadForm = document.querySelector('.img-upload__form');
+  var photoUploadOverlay = uploadForm.querySelector('.img-upload__overlay');
+  var hashtagsInput = uploadForm.querySelector('.text__hashtags');
+  var uploadFileInput = uploadForm.querySelector('#upload-file');
+  var photoUploadCancel = uploadForm.querySelector('.img-upload__cancel');
+  var descriptionInput = uploadForm.querySelector('.text__description');
+  var effectsList = document.querySelector('.effects__list');
+  var line = uploadForm.querySelector('.effect-level__line');
+  var pin = line.querySelector('.effect-level__pin');
+  var imagePreview = photoUploadOverlay.querySelector('.img-upload__preview');
+
+  uploadFileInput.addEventListener('change', function () {
+    openUploadWindow();
+  });
+
+  var onPinMouseDown = function (evt) {
+    window.slider.movePin(evt);
+  };
+
+  var onEffectButtonClick = function (evt) {
+    window.filter.changeFilter(evt);
+  };
 
   var openUploadWindow = function () {
     photoUploadOverlay.classList.remove('hidden');
-    document.querySelector('body').classList.add('modal-open');
+    body.classList.add('modal-open');
+    window.filter.setDefaultEffectLevel();
+    window.filter.showSlider('effect-none');
+    imagePreview.className = 'img-upload__preview';
+
+    photoUploadCancel.addEventListener('click', onUploadCancelClick);
+    document.addEventListener('keydown', onUploadPressEscape);
+    pin.addEventListener('mousedown', onPinMouseDown);
+    effectsList.addEventListener('click', onEffectButtonClick);
   };
 
   var closeUploadWindow = function () {
     photoUploadOverlay.classList.add('hidden');
-    document.querySelector('body').classList.remove('modal-open');
-    photoUploadInput = '';
+    body.classList.remove('modal-open');
+
+    photoUploadCancel.removeEventListener('click', onUploadCancelClick);
+    document.removeEventListener('keydown', onUploadPressEscape);
+    pin.removeEventListener('mousedown', onPinMouseDown);
+    effectsList.removeEventListener('click', onEffectButtonClick);
   };
 
-  photoUploadInput.addEventListener('change', function () {
-    openUploadWindow();
-  });
-
-  photoUploadCancel.addEventListener('click', function () {
+  var onUploadCancelClick = function () {
     closeUploadWindow();
-  });
-
-  photoUploadCancel.addEventListener('keydown', function (evt) {
-    if (evt.key === window.utils.ENTER_KEY) {
-      closeUploadWindow();
-    }
-  });
+  };
 
   var onUploadPressEscape = function (evt) {
-    if (evt.key === window.utils.ESC_KEY) {
+    if ((evt.key === window.utils.ESCAPE_KEY) && (evt.target !== hashtagsInput) && (evt.target !== descriptionInput)) {
       closeUploadWindow();
     }
   };
 
-  document.addEventListener('keydown', onUploadPressEscape);
 })();
