@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {})();
+(function () {
 var StatusCode = {
   OK: 200
 };
@@ -33,3 +33,10 @@ var loadData = function (successHandler) {
   xhr.open('GET', URL);
   xhr.send();
 };
+
+window.load = {
+  loadData: loadData,
+  photosArray: photosArray,
+  StatusCode: StatusCode
+};
+})();
