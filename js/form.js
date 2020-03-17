@@ -70,7 +70,7 @@
     }
   };
 
-// МОДУЛЬ 6 ЗАДАНИЕ 3 Функции
+  // МОДУЛЬ 6 ЗАДАНИЕ 3 Функции
 
   var createUploadMessage = function (message) {
     var fragment = document.createDocumentFragment();
