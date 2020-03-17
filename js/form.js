@@ -15,6 +15,16 @@
   var pin = line.querySelector('.effect-level__pin');
   var imagePreview = photoUploadOverlay.querySelector('.img-upload__preview');
 
+  // МОДУЛЬ 6 ЗАДАНИЕ 3 Переменные
+
+  var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+  var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+  var mainContainer = document.querySelector('main');
+  var errorButtonClose = errorMessageTemplate.querySelector('.error__button');
+  var successButtonClose = successMessageTemplate.querySelector('.success__button');
+
+  // Закончили объявление переменных
+
   uploadFileInput.addEventListener('change', function () {
     openUploadWindow();
   });
