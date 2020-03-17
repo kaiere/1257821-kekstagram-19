@@ -53,7 +53,7 @@
   var closeUploadWindow = function () {
     photoUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
-
+    imagePreview.style.transform = '';
     photoUploadCancel.removeEventListener('click', onUploadCancelClick);
     document.removeEventListener('keydown', onUploadPressEscape);
     pin.removeEventListener('mousedown', onPinMouseDown);
@@ -79,7 +79,6 @@
   };
 
   var closeUploadMessage = function (message) {
-    window.filter.setDefaultEffectLevel();
     message.remove();
   };
 
@@ -91,6 +90,8 @@
 
   var uploadHandler = function (message, button) {
     uploadFileInput.value = '';
+    window.filter.setDefaultEffectLevel();
+    imagePreview.style.transform = '';
     uploadForm.reset();
     closeUploadWindow();
     createUploadMessage(message);
