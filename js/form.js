@@ -79,6 +79,7 @@
   };
 
   var closeUploadMessage = function (message) {
+    window.filter.setDefaultEffectLevel();
     message.remove();
   };
 
