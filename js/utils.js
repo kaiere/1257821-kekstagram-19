@@ -35,12 +35,27 @@
   var MAX_AVATAR_NUMBER = 6;
   var COMMENTS_AMOUNT = 2; */
   var ESC_KEY = 'Escape';
+  var DEBOUNCE_INTERVAL = 500;
   var ENTER_KEY = 'Enter';
   var STEP_VALUES = ['25', '50', '75', '100'];
   var MAX_EFFECT_LEVEL = 100;
   var getRandomNumber = function (min, max) {
     var rand = min + Math.random() * (max + 1 - min);
     return Math.floor(rand);
+  };
+  var getRandomValueFromArray = function (arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  };
+  var filterMenu = document.querySelector('.img-filters');
+  var debounce = function (cb) {
+    var lastTimeout = null;
+
+    return function () {
+      if (lastTimeout) {
+        clearTimeout(lastTimeout);
+      }
+      lastTimeout = setTimeout(cb, DEBOUNCE_INTERVAL);
+    };
   };
 
   window.utils = {
@@ -56,6 +71,9 @@
     ENTER_KEY: ENTER_KEY,
     STEP_VALUES: STEP_VALUES,
     MAX_EFFECT_LEVEL: MAX_EFFECT_LEVEL,
-    getRandomNumber: getRandomNumber
+    getRandomNumber: getRandomNumber,
+    getRandomValueFromArray: getRandomValueFromArray,
+    filterMenu: filterMenu,
+    debounce: debounce
   };
 })();
