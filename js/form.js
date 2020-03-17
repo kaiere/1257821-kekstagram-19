@@ -70,4 +70,54 @@
     }
   };
 
+// МОДУЛЬ 6 ЗАДАНИЕ 3 Функции
+
+  var createUploadMessage = function (message) {
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(message);
+    mainContainer.appendChild(fragment);
+  };
+
+  var closeUploadMessage = function (message) {
+    message.remove();
+  };
+
+  var messageEscPressHandler = function (evt, message) {
+    if (evt.key === window.utils.ESC_KEY) {
+      closeUploadMessage(message);
+    }
+  };
+
+  var uploadHandler = function (message, button) {
+    uploadFileInput.value = '';
+    uploadForm.reset();
+    closeUploadWindow();
+    createUploadMessage(message);
+    document.addEventListener('keydown', function (evt) {
+      messageEscPressHandler(evt, message);
+    });
+    button.addEventListener('click', function () {
+      closeUploadMessage(message);
+    });
+    document.addEventListener('click', function (evt) {
+      var target = evt.target;
+      if (target !== document.querySelector('.success__inner') && target !== document.querySelector('.error__inner')) {
+        closeUploadMessage(message);
+      }
+    });
+  };
+
+  var successUploadHandler = function () {
+    uploadHandler(successMessageTemplate, successButtonClose);
+  };
+
+  var errorUploadHandler = function () {
+    uploadHandler(errorMessageTemplate, errorButtonClose);
+  };
+
+  uploadForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.uploadData(new FormData(uploadForm), successUploadHandler, errorUploadHandler);
+  });
+
 })();
