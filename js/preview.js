@@ -1,50 +1,90 @@
 'use strict';
 
-// Открытие большой фотки
-
 (function () {
+  var pictureList = document.querySelector('.pictures');
+  var closeBigPictureButton = document.querySelector('.big-picture__cancel');
   var bigPicture = document.querySelector('.big-picture');
-  var pictureUnit = document.querySelectorAll('.picture');
-  var bigPictureComment = bigPicture.querySelector('.social__footer-text');
-  var closeBigPictureButton = bigPicture.querySelector('.big-picture__cancel');
+  var commentCount = document.querySelector('.social__comment-count');
+  var commentLoad = document.querySelector('.comments-loader');
+  var commentList = document.querySelector('.social__comments');
+  var commentTemplate = document.querySelector('.social__comment');
 
-  var closeBigPicture = function () {
-    bigPicture.classList.add('hidden');
-    document.removeEventListener('keydown', onBigPictureEscPress);
-    document.querySelector('body').classList.remove('modal-open'); // При закрытии окна скролл возвращается - важно!
+
+  // Собираем один комментарий по шаблону
+  var renderComment = function (comment) {
+    var commentElement = commentTemplate.cloneNode(true);
+
+    commentElement.querySelector('.social__picture').src = comment.avatar;
+    commentElement.querySelector('.social__picture').alt = comment.name;
+    commentElement.querySelector('.social__text').textContent = comment.message;
+    return commentElement;
   };
 
-  var onBigPictureEscPress = function (evt) {
-    if (evt.key === window.utils.ESC_KEY && bigPictureComment !== document.activeElement) {
-      closeBigPicture();
+  // Создаем список комментариев
+  var createComments = function (element) {
+    var fragmentComment = document.createDocumentFragment();
+    for (var i = 0; i < element.length; i++) {
+      fragmentComment.appendChild(renderComment(element[i]));
+    }
+    commentList.innerHTML = '';
+    commentList.appendChild(fragmentComment);
+  };
+
+  // Создаем "блок" одной большой фотографии
+  var renderBigPicture = function (element) {
+    var pic = window.load.photosArray[element];
+
+    bigPicture.querySelector('.big-picture__img img').src = pic.url;
+    bigPicture.querySelector('.likes-count').textContent = pic.likes;
+    bigPicture.querySelector('.comments-count').textContent = pic.comments.length;
+    bigPicture.querySelector('.social__caption').textContent = pic.description;
+
+    createComments(pic.comments);
+
+    commentCount.classList.add('hidden');
+    commentLoad.classList.add('hidden');
+  };
+
+  // Функции открытия и закрытия большой фотографии
+  var openBigPicture = function (evt) {
+    var target = evt.target;
+    if (target.matches('a[data-id]') || target.parentNode.matches('a[data-id]')) {
+      evt.preventDefault();
+      var id = target.dataset.id || target.parentNode.dataset.id;
+      renderBigPicture(id);
+      bigPicture.classList.remove('hidden');
+      document.querySelector('body').classList.add('modal-open');
+      document.addEventListener('keydown', onPictureEscPress);
+      document.removeEventListener('keydown', onPictureEnterPress);
     }
   };
 
-  closeBigPictureButton.addEventListener('click', closeBigPicture);
-
-  var openBigPicture = function (item, picture) {
-
-    item.addEventListener('click', function (evt) {
-      evt.preventDefault();
-      document.querySelector('body').classList.add('modal-open');
-      bigPicture.classList.remove('hidden');
-      bigPicture.querySelector('.big-picture__img img').src = picture.url;
-      bigPicture.querySelector('.likes-count').textContent = picture.likes;
-      bigPicture.querySelector('.social__caption').textContent = picture.description;
-      bigPicture.querySelector('.social__comments-loader').classList.add('hidden');
-      bigPicture.querySelector('.social__comment-count').classList.add('hidden');
-
-      var socialText = bigPicture.querySelectorAll('.social__text');
-      bigPicture.querySelector('.comments-count').textContent = socialText.length;
-      for (var m = 0; m < socialText.length; m++) {
-        socialText[m].textContent = picture.comments[m].message;
-      }
-
-      document.addEventListener('keydown', onBigPictureEscPress);
-    });
+  var closeBigPicture = function () {
+    bigPicture.classList.add('hidden');
+    document.querySelector('body').classList.remove('modal-open');
+    document.removeEventListener('keydown', onPictureEscPress);
+    document.addEventListener('keydown', onPictureEnterPress);
   };
 
-  for (var n = 0; n < pictureUnit.length; n++) {
-    openBigPicture(pictureUnit[n], window.gallery.collectedPhotos[n]); // Подставляем в функцию наш массив с отрисованными фотографиями
-  }
+  var keydownHandler = function (evt, key, func) {
+    if (evt.key === key) {
+      func(evt);
+    }
+  };
+
+  var onPictureEnterPress = function (evt) {
+    keydownHandler(evt, window.utils.ENTER_KEY, openBigPicture);
+  };
+
+  var onPictureEscPress = function (evt) {
+    keydownHandler(evt, window.utils.ESC_KEY, closeBigPicture);
+  };
+
+  pictureList.addEventListener('click', function (evt) {
+    openBigPicture(evt);
+  });
+
+  closeBigPictureButton.addEventListener('click', function () {
+    closeBigPicture();
+  });
 })();

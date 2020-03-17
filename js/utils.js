@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  var PHOTOS_AMOUNT = 25;
+  /* var PHOTOS_AMOUNT = 25;
   var NAMES = ['Прометей', 'Такэда Сингэн', 'Чаплин', 'Аноним', 'Собака сутулая', 'Токугава Иэясу', 'Маки'];
   var COMMENTS = ['Всё отлично!',
     'В целом всё неплохо. Но не всё.',
@@ -33,7 +33,7 @@
   var MAX_LIKES = 200;
   var MIN_AVATAR_NUMBER = 1;
   var MAX_AVATAR_NUMBER = 6;
-  var COMMENTS_AMOUNT = 2;
+  var COMMENTS_AMOUNT = 2; */
   var ESC_KEY = 'Escape';
   var ENTER_KEY = 'Enter';
   var STEP_VALUES = ['25', '50', '75', '100'];
@@ -44,14 +44,14 @@
   };
 
   window.utils = {
-    PHOTOS_AMOUNT: PHOTOS_AMOUNT,
+    /* PHOTOS_AMOUNT: PHOTOS_AMOUNT,
     NAMES: NAMES,
     COMMENTS: COMMENTS,
     MIN_LIKES: MIN_LIKES,
     MAX_LIKES: MAX_LIKES,
     MIN_AVATAR_NUMBER: MIN_AVATAR_NUMBER,
     MAX_AVATAR_NUMBER: MAX_AVATAR_NUMBER,
-    COMMENTS_AMOUNT: COMMENTS_AMOUNT,
+    COMMENTS_AMOUNT: COMMENTS_AMOUNT, */
     ESC_KEY: ESC_KEY,
     ENTER_KEY: ENTER_KEY,
     STEP_VALUES: STEP_VALUES,
