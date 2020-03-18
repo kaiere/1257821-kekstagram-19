@@ -15,6 +15,16 @@
   var pin = line.querySelector('.effect-level__pin');
   var imagePreview = photoUploadOverlay.querySelector('.img-upload__preview');
 
+  // МОДУЛЬ 6 ЗАДАНИЕ 3 Переменные
+
+  var errorMessageTemplate = document.querySelector('#error').content.querySelector('.error');
+  var successMessageTemplate = document.querySelector('#success').content.querySelector('.success');
+  var mainContainer = document.querySelector('main');
+  var errorButtonClose = errorMessageTemplate.querySelector('.error__button');
+  var successButtonClose = successMessageTemplate.querySelector('.success__button');
+
+  // Закончили объявление переменных
+
   uploadFileInput.addEventListener('change', function () {
     openUploadWindow();
   });
@@ -43,7 +53,7 @@
   var closeUploadWindow = function () {
     photoUploadOverlay.classList.add('hidden');
     body.classList.remove('modal-open');
-
+    imagePreview.style.transform = '';
     photoUploadCancel.removeEventListener('click', onUploadCancelClick);
     document.removeEventListener('keydown', onUploadPressEscape);
     pin.removeEventListener('mousedown', onPinMouseDown);
@@ -59,5 +69,57 @@
       closeUploadWindow();
     }
   };
+
+  // МОДУЛЬ 6 ЗАДАНИЕ 3 Функции
+
+  var createUploadMessage = function (message) {
+    var fragment = document.createDocumentFragment();
+    fragment.appendChild(message);
+    mainContainer.appendChild(fragment);
+  };
+
+  var closeUploadMessage = function (message) {
+    message.remove();
+  };
+
+  var messageEscPressHandler = function (evt, message) {
+    if (evt.key === window.utils.ESC_KEY) {
+      closeUploadMessage(message);
+    }
+  };
+
+  var uploadHandler = function (message, button) {
+    uploadFileInput.value = '';
+    window.filter.setDefaultEffectLevel();
+    imagePreview.style.transform = '';
+    uploadForm.reset();
+    closeUploadWindow();
+    createUploadMessage(message);
+    document.addEventListener('keydown', function (evt) {
+      messageEscPressHandler(evt, message);
+    });
+    button.addEventListener('click', function () {
+      closeUploadMessage(message);
+    });
+    document.addEventListener('click', function (evt) {
+      var target = evt.target;
+      if (target !== document.querySelector('.success__inner') && target !== document.querySelector('.error__inner')) {
+        closeUploadMessage(message);
+      }
+    });
+  };
+
+  var successUploadHandler = function () {
+    uploadHandler(successMessageTemplate, successButtonClose);
+  };
+
+  var errorUploadHandler = function () {
+    uploadHandler(errorMessageTemplate, errorButtonClose);
+  };
+
+  uploadForm.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    window.uploadData(new FormData(uploadForm), successUploadHandler, errorUploadHandler);
+  });
 
 })();
