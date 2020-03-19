@@ -35,4 +35,5 @@
     picturesContainer: picturesContainer,
     createPhotosArray: createPhotosArray
   };
-  })();
+
+})();
