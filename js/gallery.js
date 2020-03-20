@@ -28,6 +28,7 @@
         data[element]['id'] = element;
       }
     }
+    filter.classList.remove('img-filters--inactive');
     window.load.photosArray = data;
     createPhotosArray(window.load.photosArray);
     window.filtration.getRandomPhotos();
