@@ -86,6 +86,7 @@
       document.querySelector('body').classList.add('modal-open');
       document.addEventListener('keydown', onPictureEscPress);
       document.removeEventListener('keydown', onPictureEnterPress);
+      commentLoad.addEventListener('click', commentsLoadHandler);
     }
   };
 
@@ -94,6 +95,8 @@
     document.querySelector('body').classList.remove('modal-open');
     document.removeEventListener('keydown', onPictureEscPress);
     document.addEventListener('keydown', onPictureEnterPress);
+    commentLoad.removeEventListener('click', commentsLoadHandler);
+    commentsAmount = 5;
   };
 
   var keydownHandler = function (evt, key, func) {
