@@ -18,11 +18,16 @@
   var createPhotosArray = function (array) {
     var fragment = document.createDocumentFragment();
     for (var j = 0; j < array.length; j++) {
-      fragment.appendChild(renderPicture(array[j], j));
+      fragment.appendChild(renderPicture(array[j], array[j].id));
     }
     picturesContainer.appendChild(fragment);
   };
   var successLoadHandler = function (data) {
+    for (var element in data) {
+      if (data.hasOwnProperty(element)) {
+        data[element]['id'] = element;
+      }
+    }
     window.load.photosArray = data;
     createPhotosArray(window.load.photosArray);
     window.filtration.getRandomPhotos();
