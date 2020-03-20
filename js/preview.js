@@ -11,7 +11,9 @@
   var commentLoad = document.querySelector('.comments-loader');
   var commentList = document.querySelector('.social__comments');
   var commentTemplate = document.querySelector('.social__comment');
-
+  var commentsAmount = 5;
+  var step = 5;
+  var commentsLoadHandler;
 
   // Собираем один комментарий по шаблону
   var renderComment = function (comment) {
