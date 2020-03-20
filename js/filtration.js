@@ -10,8 +10,6 @@
   var filterDefaultButton = filter.querySelector('#filter-default');
   var filterDiscussedButton = filter.querySelector('#filter-discussed');
 
-  filter.classList.remove('img-filters--inactive');
-
   var getRandomPic = function (array, splice) {
     var number = Math.floor(Math.random() * array.length);
     var content = array[number];
