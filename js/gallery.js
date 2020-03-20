@@ -5,6 +5,7 @@
 (function () {
   var picturesContainer = document.querySelector('.pictures');
   var pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
+  var filter = document.querySelector('.img-filters');
 
   var renderPicture = function (picture, id) {
     var pictureElement = pictureTemplate.cloneNode(true);
