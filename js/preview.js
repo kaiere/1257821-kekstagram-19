@@ -26,12 +26,20 @@
   };
 
   // Создаем список комментариев
-  var createComments = function (element) {
+  var createComments = function (element, sum) {
     var fragmentComment = document.createDocumentFragment();
-    for (var i = 0; i < element.length; i++) {
+    for (var i = 0; i < sum; i++) {
       fragmentComment.appendChild(renderComment(element[i]));
     }
     commentList.innerHTML = '';
+    var amount;
+
+    if (element.length <= commentsAmount) {
+      amount = element.length;
+    } else {
+      amount = commentsAmount;
+    }
+    commentCount.innerHTML = amount + ' из <span class="comments-count">' + element.length + '</span> комментариев';
     commentList.appendChild(fragmentComment);
   };
 
