@@ -52,10 +52,27 @@
     bigPicture.querySelector('.comments-count').textContent = pic.comments.length;
     bigPicture.querySelector('.social__caption').textContent = pic.description;
 
-    createComments(pic.comments);
+    if (pic.comments.length <= commentsAmount) {
+      createComments(pic.comments, pic.comments.length);
+      commentLoad.classList.add('hidden');
+    } else {
+      commentLoad.classList.remove('hidden');
+      createComments(pic.comments, commentsAmount);
+    }
 
-    commentCount.classList.add('hidden');
-    commentLoad.classList.add('hidden');
+    commentsLoadHandler = function () {
+      commentsAmount += step;
+
+      if (pic.comments.length > commentsAmount) {
+        createComments(pic.comments, commentsAmount);
+      } else {
+        createComments(pic.comments, pic.comments.length);
+        commentLoad.classList.add('hidden');
+        commentsAmount = pic.comments.length;
+      }
+
+      commentCount.innerHTML = commentsAmount + ' из <span class="comments-count">' + pic.comments.length + '</span> комментариев';
+    };
   };
 
   // Функции открытия и закрытия большой фотографии
