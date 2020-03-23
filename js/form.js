@@ -29,11 +29,11 @@
     openUploadWindow();
   });
 
-  var onPinMouseDown = function (evt) {
+  var pinMouseDownHandler = function (evt) {
     window.slider.movePin(evt);
   };
 
-  var onEffectButtonClick = function (evt) {
+  var effectListClickHandler = function (evt) {
     window.filter.changeFilter(evt);
   };
 
@@ -45,9 +45,9 @@
     imagePreview.className = 'img-upload__preview';
 
     photoUploadCancel.addEventListener('click', onUploadCancelClick);
-    document.addEventListener('keydown', onUploadPressEscape);
-    pin.addEventListener('mousedown', onPinMouseDown);
-    effectsList.addEventListener('click', onEffectButtonClick);
+    document.addEventListener('keydown', uploadFormPressEscapeHandler);
+    pin.addEventListener('mousedown', pinMouseDownHandler);
+    effectsList.addEventListener('click', effectListClickHandler);
   };
 
   var closeUploadWindow = function () {
@@ -55,17 +55,17 @@
     body.classList.remove('modal-open');
     imagePreview.style.transform = '';
     photoUploadCancel.removeEventListener('click', onUploadCancelClick);
-    document.removeEventListener('keydown', onUploadPressEscape);
-    pin.removeEventListener('mousedown', onPinMouseDown);
-    effectsList.removeEventListener('click', onEffectButtonClick);
+    document.removeEventListener('keydown', uploadFormPressEscapeHandler);
+    pin.removeEventListener('mousedown', pinMouseDownHandler);
+    effectsList.removeEventListener('click', effectListClickHandler);
   };
 
   var onUploadCancelClick = function () {
     closeUploadWindow();
   };
 
-  var onUploadPressEscape = function (evt) {
-    if ((evt.key === window.utils.ESCAPE_KEY) && (evt.target !== hashtagsInput) && (evt.target !== descriptionInput)) {
+  var uploadFormPressEscapeHandler = function (evt) {
+    if ((evt.key === window.util.ESC_KEY) && (evt.target !== hashtagsInput) && (evt.target !== descriptionInput)) {
       closeUploadWindow();
     }
   };
@@ -83,7 +83,7 @@
   };
 
   var messageEscPressHandler = function (evt, message) {
-    if (evt.key === window.utils.ESC_KEY) {
+    if (evt.key === window.util.ESC_KEY) {
       closeUploadMessage(message);
     }
   };

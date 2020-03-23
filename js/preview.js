@@ -106,11 +106,11 @@
   };
 
   var onPictureEnterPress = function (evt) {
-    keydownHandler(evt, window.utils.ENTER_KEY, openBigPicture);
+    keydownHandler(evt, window.util.ENTER_KEY, openBigPicture);
   };
 
   var onPictureEscPress = function (evt) {
-    keydownHandler(evt, window.utils.ESC_KEY, closeBigPicture);
+    keydownHandler(evt, window.util.ESC_KEY, closeBigPicture);
   };
 
   pictureList.addEventListener('click', function (evt) {

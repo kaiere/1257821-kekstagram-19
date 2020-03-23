@@ -25,9 +25,9 @@
   };
 
   var setDefaultEffectLevel = function () {
-    pin.style.left = window.utils.MAX_EFFECT_LEVEL + '%';
-    effectDepth.style.width = window.utils.MAX_EFFECT_LEVEL + '%';
-    effectLevelInput.value = window.utils.MAX_EFFECT_LEVEL;
+    pin.style.left = window.util.MAX_EFFECT_LEVEL + '%';
+    effectDepth.style.width = window.util.MAX_EFFECT_LEVEL + '%';
+    effectLevelInput.value = window.util.MAX_EFFECT_LEVEL;
   };
 
   var changeFilter = function (evt) {
@@ -65,7 +65,7 @@
   };
 
   var getEffectDepth = function (limit) {
-    return ((effectLevelInput.value * (limit.max - limit.min)) / window.utils.MAX_EFFECT_LEVEL) + limit.min;
+    return ((effectLevelInput.value * (limit.max - limit.min)) / window.util.MAX_EFFECT_LEVEL) + limit.min;
   };
 
   var setFilter = function (effect) {

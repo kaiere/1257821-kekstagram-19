@@ -8,10 +8,10 @@
   var effectDepth = effectLevelLine.querySelector('.effect-level__depth');
   pin.style.cursor = 'pointer';
 
-  var onPinMouseDown = function (evt) {
+  var pinMouseDownHandler = function (evt) {
     evt.preventDefault();
 
-    var onPinMouseMove = function (moveEvt) {
+    var pinMouseMoveHandler = function (moveEvt) {
       moveEvt.preventDefault();
 
       var lineStart = effectLevelLine.offsetLeft - pin.offsetWidth;
@@ -37,18 +37,18 @@
       window.filter.setFilter(activeEffect);
     };
 
-    var onPinMouseUp = function (upEvt) {
+    var pinMouseUpHandler = function (upEvt) {
       upEvt.preventDefault();
-      document.removeEventListener('mousemove', onPinMouseMove);
-      document.removeEventListener('mouseup', onPinMouseUp);
+      document.removeEventListener('mousemove', pinMouseMoveHandler);
+      document.removeEventListener('mouseup', pinMouseUpHandler);
     };
 
-    document.addEventListener('mousemove', onPinMouseMove);
-    document.addEventListener('mouseup', onPinMouseUp);
+    document.addEventListener('mousemove', pinMouseMoveHandler);
+    document.addEventListener('mouseup', pinMouseUpHandler);
   };
 
   window.slider = {
-    movePin: onPinMouseDown
+    movePin: pinMouseDownHandler
   };
 
 })();
