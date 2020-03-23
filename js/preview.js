@@ -11,7 +11,9 @@
   var commentLoad = document.querySelector('.comments-loader');
   var commentList = document.querySelector('.social__comments');
   var commentTemplate = document.querySelector('.social__comment');
-
+  var commentsAmount = 5;
+  var step = 5;
+  var commentsLoadHandler;
 
   // Собираем один комментарий по шаблону
   var renderComment = function (comment) {
@@ -24,12 +26,20 @@
   };
 
   // Создаем список комментариев
-  var createComments = function (element) {
+  var createComments = function (element, sum) {
     var fragmentComment = document.createDocumentFragment();
-    for (var i = 0; i < element.length; i++) {
+    for (var i = 0; i < sum; i++) {
       fragmentComment.appendChild(renderComment(element[i]));
     }
     commentList.innerHTML = '';
+    var amount;
+
+    if (element.length <= commentsAmount) {
+      amount = element.length;
+    } else {
+      amount = commentsAmount;
+    }
+    commentCount.innerHTML = amount + ' из <span class="comments-count">' + element.length + '</span> комментариев';
     commentList.appendChild(fragmentComment);
   };
 
@@ -42,10 +52,27 @@
     bigPicture.querySelector('.comments-count').textContent = pic.comments.length;
     bigPicture.querySelector('.social__caption').textContent = pic.description;
 
-    createComments(pic.comments);
+    if (pic.comments.length <= commentsAmount) {
+      createComments(pic.comments, pic.comments.length);
+      commentLoad.classList.add('hidden');
+    } else {
+      commentLoad.classList.remove('hidden');
+      createComments(pic.comments, commentsAmount);
+    }
 
-    commentCount.classList.add('hidden');
-    commentLoad.classList.add('hidden');
+    commentsLoadHandler = function () {
+      commentsAmount += step;
+
+      if (pic.comments.length > commentsAmount) {
+        createComments(pic.comments, commentsAmount);
+      } else {
+        createComments(pic.comments, pic.comments.length);
+        commentLoad.classList.add('hidden');
+        commentsAmount = pic.comments.length;
+      }
+
+      commentCount.innerHTML = commentsAmount + ' из <span class="comments-count">' + pic.comments.length + '</span> комментариев';
+    };
   };
 
   // Функции открытия и закрытия большой фотографии
@@ -59,6 +86,7 @@
       document.querySelector('body').classList.add('modal-open');
       document.addEventListener('keydown', onPictureEscPress);
       document.removeEventListener('keydown', onPictureEnterPress);
+      commentLoad.addEventListener('click', commentsLoadHandler);
     }
   };
 
@@ -67,6 +95,8 @@
     document.querySelector('body').classList.remove('modal-open');
     document.removeEventListener('keydown', onPictureEscPress);
     document.addEventListener('keydown', onPictureEnterPress);
+    commentLoad.removeEventListener('click', commentsLoadHandler);
+    commentsAmount = 5;
   };
 
   var keydownHandler = function (evt, key, func) {
