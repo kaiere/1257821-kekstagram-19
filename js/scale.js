@@ -1,6 +1,6 @@
 'use strict';
 
-// Масштаб фото
+// Масштаб фотографии
 
 (function () {
   var smallScaleButton = document.querySelector('.scale__control--smaller');
