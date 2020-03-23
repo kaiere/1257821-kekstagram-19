@@ -92,6 +92,7 @@
     uploadFileInput.value = '';
     window.filter.setDefaultEffectLevel();
     imagePreview.style.transform = '';
+    window.filter. setFilter('effect-none');
     uploadForm.reset();
     closeUploadWindow();
     createUploadMessage(message);

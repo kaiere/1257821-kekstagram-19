@@ -1,5 +1,8 @@
 'use strict';
 
+// Беда с отрисовкой больших фото после фильтрации
+// После филтрации, при клике по маленьким фото, отображаются старые, неправильные
+// Подскажи, пожалуйста, как это исправить (´；ω；`)ｳｩｩ
 (function () {
   var pictureList = document.querySelector('.pictures');
   var closeBigPictureButton = document.querySelector('.big-picture__cancel');
